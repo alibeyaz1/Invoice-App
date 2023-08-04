@@ -10,6 +10,10 @@ import UIKit
 class HomeVC : UIViewController, HomeViewModelDelegate {
     
     let viewModel = HomeViewModel()
+
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -18,57 +22,75 @@ class HomeVC : UIViewController, HomeViewModelDelegate {
         viewModel.fetchJSONData()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.1)
+    }
+    
     func UISetup(){
         
         
-        let generalInfoView = GeneralInfoView(price: viewModel.object!.totalPrice!, Xadet: "\(viewModel.object!.totalPriceCount!)")
-        view.addSubview(generalInfoView)
-        generalInfoView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
-            make.left.equalToSuperview().offset(30)
-            make.right.equalToSuperview().offset(-30)
+        lazy var headerView = HeaderView(title: "FATURA LİSTESİ")
+        view.addSubview(headerView)
+        headerView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.15)
         }
         
-        let customerListView = CustomerListView(
-            company : (viewModel.object?.list![1].company)!,
-            address: (viewModel.object?.list![1].address)!,
-            installationNumber: (viewModel.object?.list![1].installationNumber)!,
-            contractAccountNumber: (viewModel.object?.list![1].contractAccountNumber)!,
-            amaount: (viewModel.object?.list![1].amount)!)
+        scrollView.backgroundColor = .clear
+        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
         
-        view.addSubview(customerListView)
-        customerListView.snp.makeConstraints { make in
-            make.top.equalTo(generalInfoView.snp.bottom).offset(32)
-            make.left.right.equalTo(generalInfoView)
-            make.height.equalToSuperview().multipliedBy(0.4)
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom).offset(10)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.snp.bottom)
         }
         
-        //        if let list = viewModel.object?.list {
-        //            // Döngü ile tüm list elemanlarını dolaşın
-        //            for (index, item) in list.enumerated() {
-        //                // Her eleman için yeni bir CustomerListView oluşturun
-        //                let customerListView = CustomerListView(address: item.address!, installationNumber: item.installationNumber!)
-        //                view.addSubview(customerListView)
-        //
-        //                // Constraints ayarlamak için bir önceki customerListView referansını alın
-        //                let previousCustomerListView = index == 0 ? generalInfoView : view.subviews[index - 1]
-        //
-        //                // Constraints ayarlamalarını yapın
-        //                customerListView.snp.makeConstraints { make in
-        //                    make.top.equalTo(previousCustomerListView.snp.bottom).offset(32)
-        //                    make.left.right.equalTo(previousCustomerListView)
-        //                    make.height.equalToSuperview().multipliedBy(0.4)
-        //                }
-        //            }
-        //
-        //            // Son customerListView referansını alın ve contentView'in alt kenarına sabitleyin
-        //            if let lastCustomerListView = view.subviews.last {
-        //                lastCustomerListView.snp.makeConstraints { make in
-        //                    make.bottom.equalToSuperview().inset(16) // Örneğin alt kısımdan 16 birim içeride olsun
-        //                }
-        //            }
-        //        }
+        scrollView.addSubview(contentView)
+        
+        contentView.snp.makeConstraints { make in
+            make.height.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+        }
+        
+        let generalInfoView = GeneralInfoView(price: viewModel.object!.totalPrice!, Xadet: "\(viewModel.object!.totalPriceCount!)")
+        contentView.addSubview(generalInfoView)
+        generalInfoView.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.top)
+            make.left.equalToSuperview().offset(30)
+            make.right.equalToSuperview().offset(-30)
+            make.height.equalToSuperview().multipliedBy(0.18)
+        }
+        
+        let customerListView = CustomerListView(
+                 company : (viewModel.object?.list![0].company)!,
+                 address: (viewModel.object?.list![0].address)!,
+                 installationNumber: (viewModel.object?.list![0].installationNumber)!,
+                 contractAccountNumber: (viewModel.object?.list![0].contractAccountNumber)!,
+                 amaount: (viewModel.object?.list![0].amount)!)
+             
+        contentView.addSubview(customerListView)
+             customerListView.snp.makeConstraints { make in
+                 make.top.equalTo(generalInfoView.snp.bottom).offset(32)
+                 make.left.right.equalTo(generalInfoView)
+                 make.height.equalToSuperview().multipliedBy(0.5)
+             }
+        let customerList2View = CustomerListView(
+                 company : (viewModel.object?.list![1].company)!,
+                 address: (viewModel.object?.list![1].address)!,
+                 installationNumber: (viewModel.object?.list![1].installationNumber)!,
+                 contractAccountNumber: (viewModel.object?.list![1].contractAccountNumber)!,
+                 amaount: (viewModel.object?.list![1].amount)!)
+             
+        contentView.addSubview(customerList2View)
+        customerList2View.snp.makeConstraints { make in
+                 make.top.equalTo(customerListView.snp.bottom).offset(32)
+                 make.left.right.equalTo(generalInfoView)
+                 make.height.equalToSuperview().multipliedBy(0.5)
+             }
         
     }
     

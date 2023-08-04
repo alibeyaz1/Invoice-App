@@ -21,12 +21,17 @@ final class CustomerListView: UIView {
     let contractAccountNumberCopyButton = UIButton()
     let amaountLabel = UILabel()
     let amountDetailsLabel = UILabel()
+    var installationNumber = String()
+    var contractAccountNumber = String()
     let viewButton = CustomGradientButton(title: "Görüntüle")
     
     
     init(frame: CGRect = .zero,company : String,  address : String, installationNumber : String, contractAccountNumber : String, amaount : String) {
         super.init(frame: frame)
         configure(company : company,  address : address, installationNumber : installationNumber, contractAccountNumber : contractAccountNumber, amaount : amaount )
+        self.installationNumber = installationNumber
+        self.contractAccountNumber = contractAccountNumber
+
     }
     
     required init?(coder: NSCoder) {
@@ -101,6 +106,8 @@ final class CustomerListView: UIView {
             make.top.equalTo(seperator2.snp.bottom).offset(10)
             make.left.equalTo(companyLabel.snp.left)
         }
+        
+        installationNumberCopyButton.addTarget(self, action: #selector(didTapCopyInstallationNumber), for: .touchUpInside)
         installationNumberCopyButton.setImage(UIImage(named: "copy"), for: .normal)
         addSubview(installationNumberCopyButton)
         installationNumberCopyButton.snp.makeConstraints { make in
@@ -129,6 +136,8 @@ final class CustomerListView: UIView {
             make.left.equalTo(companyLabel.snp.left)
             make.right.equalTo(center)
         }
+        
+        contractAccountNumberCopyButton.addTarget(self, action: #selector(didTapCopyContractAccountNumber), for: .touchUpInside)
         contractAccountNumberCopyButton.setImage(UIImage(named: "copy"), for: .normal)
         addSubview(contractAccountNumberCopyButton)
         contractAccountNumberCopyButton.snp.makeConstraints { make in
@@ -198,6 +207,27 @@ final class CustomerListView: UIView {
         
         return formatenedNumber
     }
+    
+    func copyNumberToClipboard(number: String) {
+        // Kopyalanacak metni panoya kopyala
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = number
+        
+        // Kopyalandıktan sonra kullanıcıya bir geri bildirim verebilirsiniz, örneğin:
+        let alert = UIAlertController(title: "Kopyalandı", message: "\(number) panoya kopyalandı.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
+        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+
+    @objc func didTapCopyInstallationNumber() {
+        copyNumberToClipboard(number: installationNumber)
+    }
+
+    @objc func didTapCopyContractAccountNumber() {
+        copyNumberToClipboard(number: contractAccountNumber)
+    }
+
+
     
 }
 
