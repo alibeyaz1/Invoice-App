@@ -26,9 +26,12 @@ final class HeaderView: UIImageView {
     }
     
     @objc func backButtonTapped() {
-        
-
-     }
+        guard let viewController = self.parentViewController else {
+            // Parent view controller is not available, cannot dismiss
+            return
+        }
+        viewController.dismiss(animated: true, completion: nil)
+    }
 
      override func layoutSubviews() {
          super.layoutSubviews()
@@ -65,3 +68,16 @@ final class HeaderView: UIImageView {
             }
         }
  }
+
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder?.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
+    }
+}

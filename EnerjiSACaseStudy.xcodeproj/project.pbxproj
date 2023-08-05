@@ -16,6 +16,9 @@
 		7D4E48272A79955300BCDFBD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D4E48262A79955300BCDFBD /* Assets.xcassets */; };
 		7D4E482A2A79955300BCDFBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4E48282A79955300BCDFBD /* LaunchScreen.storyboard */; };
 		7D4E48332A7995D400BCDFBD /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4E48322A7995D400BCDFBD /* Alamofire */; };
+		7D522E3F2A7D8C4B0057169C /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D522E3E2A7D8C4B0057169C /* InvoiceTableViewCell.swift */; };
+		7D522E412A7D8D0A0057169C /* InvoiceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D522E402A7D8D0A0057169C /* InvoiceTableView.swift */; };
+		7D522E432A7E370F0057169C /* InvoiceTableHeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D522E422A7E370F0057169C /* InvoiceTableHeaderViewCell.swift */; };
 		7DCACEC02A7C42DD00D40B4B /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCACEBF2A7C42DD00D40B4B /* HeaderView.swift */; };
 		7DDF50B32A7AAEEC000C8CFF /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF50B22A7AAEEC000C8CFF /* HomeVC.swift */; };
 		7DDF50BA2A7AAF6C000C8CFF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7DDF50B92A7AAF6C000C8CFF /* SnapKit */; };
@@ -42,6 +45,9 @@
 		7D4E48262A79955300BCDFBD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D4E48292A79955300BCDFBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D4E482B2A79955300BCDFBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D522E3E2A7D8C4B0057169C /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
+		7D522E402A7D8D0A0057169C /* InvoiceTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableView.swift; sourceTree = "<group>"; };
+		7D522E422A7E370F0057169C /* InvoiceTableHeaderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableHeaderViewCell.swift; sourceTree = "<group>"; };
 		7DCACEBF2A7C42DD00D40B4B /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		7DDF50B22A7AAEEC000C8CFF /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		7DDF50BB2A7AAF8A000C8CFF /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -112,6 +118,16 @@
 			path = EnerjiSACaseStudy;
 			sourceTree = "<group>";
 		};
+		7D522E3D2A7D8C360057169C /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				7D522E3E2A7D8C4B0057169C /* InvoiceTableViewCell.swift */,
+				7D522E402A7D8D0A0057169C /* InvoiceTableView.swift */,
+				7D522E422A7E370F0057169C /* InvoiceTableHeaderViewCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		7DDF50A82A7AAE47000C8CFF /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +181,7 @@
 		7DDF50AE2A7AAEAF000C8CFF /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				7D522E3D2A7D8C360057169C /* TableView */,
 				7DDF50BF2A7ABB44000C8CFF /* GeneralInfoView.swift */,
 				7DDF50D82A7AE9E6000C8CFF /* CustomerListView.swift */,
 				7DDF50DA2A7AFAB6000C8CFF /* CustomGradientButton.swift */,
@@ -299,6 +316,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D522E3F2A7D8C4B0057169C /* InvoiceTableViewCell.swift in Sources */,
+				7D522E412A7D8D0A0057169C /* InvoiceTableView.swift in Sources */,
 				7D2400252A7BDFC30027675B /* CustomTextField.swift in Sources */,
 				7DDF50BE2A7AB149000C8CFF /* Response.swift in Sources */,
 				7DDF50B32A7AAEEC000C8CFF /* HomeVC.swift in Sources */,
@@ -306,6 +325,7 @@
 				7D2400272A7BEC690027675B /* AlertCustomView.swift in Sources */,
 				7DDF50DB2A7AFAB6000C8CFF /* CustomGradientButton.swift in Sources */,
 				7D4E481E2A79955200BCDFBD /* AppDelegate.swift in Sources */,
+				7D522E432A7E370F0057169C /* InvoiceTableHeaderViewCell.swift in Sources */,
 				7DDF50C22A7AE0DB000C8CFF /* UIColor+Extensions.swift in Sources */,
 				7D2400232A7BDCB00027675B /* CustomLabel.swift in Sources */,
 				7D2400212A7BDA4C0027675B /* InvoiceDetailsVC.swift in Sources */,

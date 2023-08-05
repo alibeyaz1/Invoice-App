@@ -65,8 +65,8 @@ final class GeneralInfoView: UIView {
         
         
         
-        textLabel.text = "Tüm sözleşme hesaplarınıza ait \(Xadet) adet ödenmemiş fatura bulunmaktadır."
-        textLabel.numberOfLines = 0
+        textLabel.text = "Tüm sözleşme hesaplarınıza ait \(Xadet) adet \nödenmemiş fatura bulunmaktadır."
+        textLabel.numberOfLines = 2
         textLabel.font = UIFont(name: "Hind-Semibold", size: 17)
         textLabel.textColor = .mainColor
 
@@ -75,7 +75,6 @@ final class GeneralInfoView: UIView {
             make.top.equalToSuperview().offset(12)
             make.left.equalTo(infoIcon.snp.right).offset(12)
             make.right.equalToSuperview().offset(-12)
-            make.bottom.equalTo(subtitleLabel.snp.top).offset(-12)
         }
         
         

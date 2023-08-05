@@ -10,10 +10,13 @@ import UIKit
 class HomeVC : UIViewController, HomeViewModelDelegate {
     
     let viewModel = HomeViewModel()
-
+    
     let scrollView = UIScrollView()
     let contentView = UIView()
-
+    var customerListView = CustomerListView(company: "", address: "", installationNumber: "", contractAccountNumber: "", amaount: "")
+    var customerList2View = CustomerListView(company: "", address: "", installationNumber: "", contractAccountNumber: "", amaount: "")
+    
+    
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -24,7 +27,7 @@ class HomeVC : UIViewController, HomeViewModelDelegate {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.1)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: customerList2View.frame.maxY + 32)
     }
     
     func UISetup(){
@@ -65,35 +68,42 @@ class HomeVC : UIViewController, HomeViewModelDelegate {
             make.height.equalToSuperview().multipliedBy(0.18)
         }
         
-        let customerListView = CustomerListView(
-                 company : (viewModel.object?.list![0].company)!,
-                 address: (viewModel.object?.list![0].address)!,
-                 installationNumber: (viewModel.object?.list![0].installationNumber)!,
-                 contractAccountNumber: (viewModel.object?.list![0].contractAccountNumber)!,
-                 amaount: (viewModel.object?.list![0].amount)!)
-             
+        customerListView = CustomerListView(
+            company : (viewModel.object?.list![0].company)!,
+            address: (viewModel.object?.list![0].address)!,
+            installationNumber: (viewModel.object?.list![0].installationNumber)!,
+            contractAccountNumber: (viewModel.object?.list![0].contractAccountNumber)!,
+            amaount: (viewModel.object?.list![0].amount)!)
+        customerListView.viewButton.addTarget(self, action: #selector(clickPresent), for: .touchUpInside)
         contentView.addSubview(customerListView)
-             customerListView.snp.makeConstraints { make in
-                 make.top.equalTo(generalInfoView.snp.bottom).offset(32)
-                 make.left.right.equalTo(generalInfoView)
-                 make.height.equalToSuperview().multipliedBy(0.5)
-             }
-        let customerList2View = CustomerListView(
-                 company : (viewModel.object?.list![1].company)!,
-                 address: (viewModel.object?.list![1].address)!,
-                 installationNumber: (viewModel.object?.list![1].installationNumber)!,
-                 contractAccountNumber: (viewModel.object?.list![1].contractAccountNumber)!,
-                 amaount: (viewModel.object?.list![1].amount)!)
-             
+        customerListView.snp.makeConstraints { make in
+            make.top.equalTo(generalInfoView.snp.bottom).offset(32)
+            make.left.right.equalTo(generalInfoView)
+            make.height.lessThanOrEqualTo(380)
+        }
+        customerList2View = CustomerListView(
+            company : (viewModel.object?.list![1].company)!,
+            address: (viewModel.object?.list![1].address)!,
+            installationNumber: (viewModel.object?.list![1].installationNumber)!,
+            contractAccountNumber: (viewModel.object?.list![1].contractAccountNumber)!,
+            amaount: (viewModel.object?.list![1].amount)!)
+        
+        
         contentView.addSubview(customerList2View)
         customerList2View.snp.makeConstraints { make in
-                 make.top.equalTo(customerListView.snp.bottom).offset(32)
-                 make.left.right.equalTo(generalInfoView)
-                 make.height.equalToSuperview().multipliedBy(0.5)
-             }
+            make.top.equalTo(customerListView.snp.bottom).offset(32)
+            make.left.right.equalTo(generalInfoView)
+            make.height.lessThanOrEqualTo(380)
+        }
         
     }
     
+    @objc func clickPresent(){
+        
+        let vc = InvoiceDetailsVC()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
     
     
     func fetchSucceed(responce: Response) {
