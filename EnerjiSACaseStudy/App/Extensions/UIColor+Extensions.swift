@@ -11,5 +11,6 @@ import UIKit
 extension UIColor {
     static let mainColor = UIColor(red: 0.267, green: 0.267, blue: 0.267, alpha: 1)
     static let placeHolderBgColor = UIColor(red: 0.954, green: 0.954, blue: 0.954, alpha: 1)
+    static let clrYellow = UIColor(red: 0.95, green: 0.74, blue: 0.27, alpha: 1)
 
 }

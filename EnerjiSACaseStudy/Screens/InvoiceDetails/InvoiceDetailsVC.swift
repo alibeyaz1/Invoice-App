@@ -22,6 +22,15 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
     
     
     let viewModel = InvoiceDetailsViewModel()
+    let homeViewModel = HomeViewModel()
+    
+    
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    
+    var companyName: String = ""
+     var address: String = ""
+    
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -33,59 +42,137 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
         UISetup()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.4)
+    }
+    
+    
     func UISetup(){
+        
+        lazy var headerView = HeaderView(title: "FATURA LİSTESİ", showBackButton: true )
+        view.addSubview(headerView)
+        headerView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.15)
+        }
         
         view.addSubview(personalInformationLabel)
         personalInformationLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(headerView.snp.bottom)
             make.left.equalTo(view.safeAreaLayoutGuide).offset(30)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-30)
         }
         
-        view.addSubview(nameTextField)
+        
+        scrollView.backgroundColor = .clear
+        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(personalInformationLabel.snp.bottom).offset(10)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view.snp.bottom)
+        }
+        
+        scrollView.addSubview(contentView)
+        
+        contentView.snp.makeConstraints { make in
+            make.height.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+        }
+        
+        contentView.addSubview(nameTextField)
         nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(personalInformationLabel.snp.bottom).offset(60)
+            make.top.equalTo(contentView.snp.top).offset(32)
             make.left.equalTo(view.safeAreaLayoutGuide).offset(28)
             make.right.equalTo(view.safeAreaLayoutGuide).offset(-28)
             make.height.equalTo(50)
         }
         
         tcNumberTextField.keyboardType = .numberPad
-        view.addSubview(tcNumberTextField)
+        contentView.addSubview(tcNumberTextField)
         tcNumberTextField.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(60)
             make.left.right.equalTo(nameTextField)
             make.height.equalTo(50)
         }
         
-        view.addSubview(warningLabel)
+        contentView.addSubview(warningLabel)
         warningLabel.isHidden = true
         warningLabel.textColor = .red
         warningLabel.textAlignment = .left
         warningLabel.font =  UIFont(name: "Hind-Regular", size: 14)
-  
+        
         
         emailTextField.keyboardType = .emailAddress
-        view.addSubview(emailTextField)
+        contentView.addSubview(emailTextField)
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(tcNumberTextField.snp.bottom).offset(60)
             make.left.right.equalTo(nameTextField)
             make.height.equalTo(50)
         }
         phoneNumberTextField.keyboardType = .phonePad
-        view.addSubview(phoneNumberTextField)
+        contentView.addSubview(phoneNumberTextField)
         phoneNumberTextField.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(64)
             make.left.right.equalTo(nameTextField)
             make.height.equalTo(50)
         }
         
-        view.addSubview(installationDetailsLabel)
+        contentView.addSubview(installationDetailsLabel)
         installationDetailsLabel.snp.makeConstraints { make in
             make.top.equalTo(phoneNumberTextField.snp.bottom).offset(23)
             make.left.right.equalTo(personalInformationLabel)
             
         }
+        
+        let customerListView = CustomerListView(
+            company : "Evim",
+            address:  "sadjşadsjşads",
+            installationNumber:  "",
+            contractAccountNumber: "",
+            amaount:  "")
+        /*
+            company : (homeViewModel.object?.list![0].company)!,
+            address: (homeViewModel.object?.list![0].address)!,
+            installationNumber: (homeViewModel.object?.list![0].installationNumber)!,
+            contractAccountNumber: (homeViewModel.object?.list![0].contractAccountNumber)!,
+            amaount: (homeViewModel.object?.list![0].amount)!)
+         */
+//        customerListView.viewButton.addTarget(self, action: #selector(clickPresent), for: .touchUpInside)
+        
+        customerListView.viewButton.isHidden = true
+        customerListView.amaountLabel.isHidden = true
+        customerListView.amountDetailsLabel.isHidden = true
+        contentView.addSubview(customerListView)
+        customerListView.snp.makeConstraints { make in
+            make.top.equalTo(installationDetailsLabel.snp.bottom).offset(32)
+            make.left.right.equalToSuperview().inset(30)
+            make.height.lessThanOrEqualTo(380)
+        }
+        
+        var generalInfoView = GeneralInfoView(price: "", Xadet: "2")
+        generalInfoView.textLabel.text = "Seçili sözleşme hesabınıza ait 2 adet ödenmemiş fatura bulunmaktadır."
+        customerListView.addSubview(generalInfoView)
+        generalInfoView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().offset(12)
+            make.right.equalToSuperview().offset(-12)
+            make.height.equalTo(120)
+        }
+        
+        let tableView = InvoiceTableView()
+
+                  contentView.addSubview(tableView)
+                  tableView.snp.makeConstraints { make in
+                      make.top.equalTo(customerListView.snp.bottom).offset(20)
+                      make.left.equalToSuperview().offset(20)
+                      make.right.equalToSuperview().offset(-20)
+                      make.height.equalTo(440)
+                  }
         
         
         
