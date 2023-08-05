@@ -5,26 +5,25 @@
 //  Created by Ali Beyaz on 3.08.2023.
 //
 
-
 import SnapKit
 import UIKit
 
-/// Authentication TextField to respond all the necessities of the authenticator. Check "init" documentation for full detail
+// MARK: - CustomTextField
+/// Authentication TextField to respond to all the necessities of the authenticator.
 final class CustomTextField: UITextField {
-    lazy var headerLabel = UILabel()
-
+    lazy var headerLabel = CustomLabel()
     
-    /// Authentication TextField to respond all the necessities of the authenticator.
+    /// Authentication TextField to respond to all the necessities of the authenticator.
     /// - Parameters:
-    ///   - frame: set to .zero by default
-    ///   - header: give textfield an header text to represent it's functionality
-    ///   - placeholder: set textfield placeholder text to indicate it's input type
+    ///   - frame: Set to .zero by default.
+    ///   - header: Give the textfield a header text to represent its functionality.
+    ///   - placeholder: Set the textfield's placeholder text to indicate its input type.
     init(frame: CGRect = .zero, header: String, placeholder: String) {
         super.init(frame: frame)
 
         setAuthTextField(header: header, placeholder: placeholder)
     }
-   
+    
     @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -42,19 +41,22 @@ final class CustomTextField: UITextField {
         self.layer.cornerRadius = 10
         self.autocorrectionType = .no
         self.autocapitalizationType = .none
-        let attribute = [NSAttributedString.Key.foregroundColor: UIColor.mainColor, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
-        let myAttrString = NSAttributedString(string: placeholder, attributes: attribute)
-        self.attributedPlaceholder = myAttrString
+        
+        // Customize placeholder attributes
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.mainColor,
+            .font: UIFont.systemFont(ofSize: 17)
+        ]
+        let attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attributes)
+        self.attributedPlaceholder = attributedPlaceholder
+
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: self.frame.height))
         self.leftViewMode = .always
-        
+
         self.font = UIFont(name: "Hind-Regular", size: 17)
         self.textColor = .mainColor
-        
-  
+
         headerLabel.text = header
-        headerLabel.font = UIFont(name: "Hind-Semibold", size: 17)
-        headerLabel.textColor = .mainColor
         headerLabel.textAlignment = .left
         headerLabel.numberOfLines = 1
         addSubview(headerLabel)
@@ -64,11 +66,10 @@ final class CustomTextField: UITextField {
             make.right.equalToSuperview().offset(-4)
             make.height.equalTo(24)
         }
-
     }
 }
 
-
+// MARK: - Toolbar Extension
 extension UITextField {
     typealias ToolbarItem = (title: String, target: Any, selector: Selector)
 

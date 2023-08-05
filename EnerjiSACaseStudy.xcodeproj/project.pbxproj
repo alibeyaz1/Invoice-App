@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D0934DD2A7E9C900015C66D /* UnpaidInvoiceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0934DC2A7E9C900015C66D /* UnpaidInvoiceInfoView.swift */; };
 		7D24001F2A7BDA2F0027675B /* InvoiceDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D24001E2A7BDA2F0027675B /* InvoiceDetailsViewModel.swift */; };
 		7D2400212A7BDA4C0027675B /* InvoiceDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2400202A7BDA4C0027675B /* InvoiceDetailsVC.swift */; };
 		7D2400232A7BDCB00027675B /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2400222A7BDCB00027675B /* CustomLabel.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D0934DC2A7E9C900015C66D /* UnpaidInvoiceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpaidInvoiceInfoView.swift; sourceTree = "<group>"; };
 		7D24001E2A7BDA2F0027675B /* InvoiceDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceDetailsViewModel.swift; sourceTree = "<group>"; };
 		7D2400202A7BDA4C0027675B /* InvoiceDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceDetailsVC.swift; sourceTree = "<group>"; };
 		7D2400222A7BDCB00027675B /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -141,9 +143,7 @@
 			children = (
 				7D4E481D2A79955200BCDFBD /* AppDelegate.swift */,
 				7D4E482B2A79955300BCDFBD /* Info.plist */,
-				7DDF50B12A7AAEC9000C8CFF /* Manager */,
 				7DDF50B02A7AAEBF000C8CFF /* Extensions */,
-				7DDF50AF2A7AAEB8000C8CFF /* Helpers */,
 				7DDF50AE2A7AAEAF000C8CFF /* CustomViews */,
 				7DDF50A82A7AAE47000C8CFF /* Models */,
 			);
@@ -183,6 +183,7 @@
 			children = (
 				7D522E3D2A7D8C360057169C /* TableView */,
 				7DDF50BF2A7ABB44000C8CFF /* GeneralInfoView.swift */,
+				7D0934DC2A7E9C900015C66D /* UnpaidInvoiceInfoView.swift */,
 				7DDF50D82A7AE9E6000C8CFF /* CustomerListView.swift */,
 				7DDF50DA2A7AFAB6000C8CFF /* CustomGradientButton.swift */,
 				7D2400222A7BDCB00027675B /* CustomLabel.swift */,
@@ -193,26 +194,12 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		7DDF50AF2A7AAEB8000C8CFF /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		7DDF50B02A7AAEBF000C8CFF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				7DDF50C12A7AE0DB000C8CFF /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		7DDF50B12A7AAEC9000C8CFF /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		7DDF50B42A7AAEFC000C8CFF /* ViewModel */ = {
@@ -317,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D522E3F2A7D8C4B0057169C /* InvoiceTableViewCell.swift in Sources */,
+				7D0934DD2A7E9C900015C66D /* UnpaidInvoiceInfoView.swift in Sources */,
 				7D522E412A7D8D0A0057169C /* InvoiceTableView.swift in Sources */,
 				7D2400252A7BDFC30027675B /* CustomTextField.swift in Sources */,
 				7DDF50BE2A7AB149000C8CFF /* Response.swift in Sources */,
@@ -478,6 +466,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -505,6 +494,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

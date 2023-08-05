@@ -10,23 +10,30 @@ import Alamofire
 
 
 protocol InvoiceDetailsViewModelDelegate : AnyObject {
+
     
-//    func fetchSucceed(responce: Response)
-//    func fetchFailed(error : Error)
-//
 }
 
 protocol InvoiceDetailsViewModelProtocol{
     
     var  delegate : InvoiceDetailsViewModelDelegate? {get set}
     
-//    func fetchJSONData()
-
+    func numberOfRows(isJob: Bool) -> Int
+    func cellForRow(isJob: Bool) -> [Invoice]?
+    func price(isJob : Bool) -> String?
+    
 }
 
 class InvoiceDetailsViewModel : InvoiceDetailsViewModelProtocol {
     
+    
+    
     var delegate: InvoiceDetailsViewModelDelegate?
+    let viewModel : HomeViewModel
+    
+    init( viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+    }
     
     func validateCitizenshipID(ID: Int) -> Bool {
         let digits = ID.description.compactMap({ $0.wholeNumberValue })
@@ -45,4 +52,54 @@ class InvoiceDetailsViewModel : InvoiceDetailsViewModelProtocol {
         return false
     }
     
+    func numberOfRows(isJob: Bool) -> Int {
+        if !isJob {
+            let filtered = viewModel.invoiceObject?.filter({$0.installationNumber == "4012312871"})
+            return filtered?.count ?? 0
+        } else {
+            let filtered = viewModel.invoiceObject?.filter({$0.installationNumber == "4012310284"})
+            return filtered?.count ?? 0
+        }
+        
+    }
+    
+    func cellForRow(isJob: Bool) -> [Invoice]? {
+        if !isJob {
+            let filtered =  viewModel.invoiceObject?.filter({$0.installationNumber == "4012312871"})
+            
+            return filtered
+        } else {
+            let filtered =  viewModel.invoiceObject?.filter({$0.installationNumber == "4012310284"})
+            
+            return filtered
+        }
+    }
+    
+    func price(isJob : Bool) -> String? {
+        if isJob {
+            guard let totalString = viewModel.object?.totalPrice! else {return "0"}
+            let totalNS = NSString(string: totalString)
+            let totalNumber = totalNS.doubleValue
+            print(totalNumber , "totalNumber" )
+            guard  let otherAmount = viewModel.object?.list![0].amount! else {return "0"}
+            let otherNS = NSString(string: otherAmount)
+            let otherNumber = otherNS.doubleValue
+            print(otherNumber , "otherNumber" )
+            let amount = totalNumber - otherNumber
+            let stringPrice = String(format:"%.4f", amount)
+            return stringPrice
+        } else {
+            guard let totalString = viewModel.object?.totalPrice! else {return "0"}
+            let totalNS = NSString(string: totalString)
+            let totalNumber = totalNS.doubleValue
+            print(totalNumber , "totalNumber" )
+            guard  let otherAmount = viewModel.object?.list![1].amount! else {return "0"}
+            let otherNS = NSString(string: otherAmount)
+            let otherNumber = otherNS.doubleValue
+            print(otherNumber , "otherNumber" )
+            let amount = totalNumber - otherNumber
+            let stringPrice = String(format:"%.3f", amount)
+            return stringPrice
+        }
+    }
 }

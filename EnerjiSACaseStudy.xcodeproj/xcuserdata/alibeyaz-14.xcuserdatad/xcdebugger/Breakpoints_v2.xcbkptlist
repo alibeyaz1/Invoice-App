@@ -7,17 +7,175 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "34F57A05-C8A2-4ADA-9ACB-B115B2675BAE"
-            shouldBeEnabled = "No"
+            uuid = "533D9F18-F467-4A33-B82C-799B30C083E1"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EnerjiSACaseStudy/Screens/InvoiceDetails/InvoiceDetailsVC.swift"
+            filePath = "EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "UISetup()"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "customButtonTapped(sender:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "533D9F18-F467-4A33-B82C-799B30C083E1 - 5541579386c28ede"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EnerjiSACaseStudy.ViewController.customButtonTapped(sender: __C.UIButton) -&gt; ()"
+                  moduleName = "EnerjiSACaseStudy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alibeyaz-14/Downloads/CaseStudyEnerji/EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "533D9F18-F467-4A33-B82C-799B30C083E1 - 5541579386c28ede"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EnerjiSACaseStudy.ViewController.customButtonTapped(sender: __C.UIButton) -&gt; ()"
+                  moduleName = "EnerjiSACaseStudy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alibeyaz-14/Downloads/CaseStudyEnerji/EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "520">
+               </Location>
+               <Location
+                  uuid = "533D9F18-F467-4A33-B82C-799B30C083E1 - 5541579386c28e81"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EnerjiSACaseStudy.ViewController.customButtonTapped(sender: __C.UIButton) -&gt; ()"
+                  moduleName = "EnerjiSACaseStudy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alibeyaz-14/Downloads/CaseStudyEnerji/EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E5B2B97E-6BE7-42F7-8099-8C8CA321C8A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E5B2B97E-6BE7-42F7-8099-8C8CA321C8A9 - 866e86376e5bd4ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in EnerjiSACaseStudy.ViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "EnerjiSACaseStudy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alibeyaz-14/Downloads/CaseStudyEnerji/EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "E5B2B97E-6BE7-42F7-8099-8C8CA321C8A9 - 866e86376e5bd4ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in EnerjiSACaseStudy.ViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "EnerjiSACaseStudy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alibeyaz-14/Downloads/CaseStudyEnerji/EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1C893B0-F8BF-4A9B-98D1-253A707CB2D7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F1C893B0-F8BF-4A9B-98D1-253A707CB2D7 - 866e86376e5bd481"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in EnerjiSACaseStudy.ViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "EnerjiSACaseStudy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alibeyaz-14/Downloads/CaseStudyEnerji/EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "F1C893B0-F8BF-4A9B-98D1-253A707CB2D7 - 3f7be0387e38c7b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EnerjiSACaseStudy.ViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "EnerjiSACaseStudy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alibeyaz-14/Downloads/CaseStudyEnerji/EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "912">
+               </Location>
+               <Location
+                  uuid = "F1C893B0-F8BF-4A9B-98D1-253A707CB2D7 - 866e86376e5bd4ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in EnerjiSACaseStudy.ViewController.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "EnerjiSACaseStudy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alibeyaz-14/Downloads/CaseStudyEnerji/EnerjiSACaseStudy/App/CustomViews/TableView/CustomTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

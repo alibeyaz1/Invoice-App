@@ -5,19 +5,20 @@
 //  Created by Ali Beyaz on 3.08.2023.
 //
 
-
 import UIKit
 import SnapKit
 
+// MARK: - CustomLabel
 class CustomLabel: UILabel {
     
+    // MARK: - Convenience Initializer
     convenience init(text: String) {
-           self.init()
-           self.text = text
-           setupUI()
-       }
+        self.init()
+        self.text = text
+        setupUI()
+    }
     
-    // Initialization
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -28,6 +29,7 @@ class CustomLabel: UILabel {
         setupUI()
     }
     
+    // MARK: - Setup UI
     private func setupUI() {
         // Customizations for the label
         font = UIFont(name: "Hind-Semibold", size: 17)
@@ -35,12 +37,5 @@ class CustomLabel: UILabel {
         textAlignment = .left
         numberOfLines = 1
         
-        // SnapKit constraints
-        snp.makeConstraints { make in
-//            // Set your preferred constraints here.
-//            // For example, let's set a fixed height and width for the label.
-//            make.width.equalTo(200)
-//            make.height.equalTo(40)
-        }
     }
 }

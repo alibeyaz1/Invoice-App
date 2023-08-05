@@ -11,7 +11,7 @@ import UIKit
 import Alamofire
 
 class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITextFieldDelegate {
-    
+    var isJobAdress = false
     let personalInformationLabel = CustomLabel(text: "KİŞİSEL BİLGİLER")
     let nameTextField = CustomTextField(header: "Adınız ve Soyadınız", placeholder: "Adınız ve Soyadınız")
     let tcNumberTextField = CustomTextField(header: "T.C. Kimlik Numaranız", placeholder: "T.C. Kimlik Numaranız")
@@ -20,14 +20,27 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
     let installationDetailsLabel = CustomLabel(text: "TESİSAT DETAYI")
     let warningLabel =  UILabel()
     
+    var homeViewModel : HomeViewModel
     
-    let viewModel = InvoiceDetailsViewModel()
-    let homeViewModel = HomeViewModel()
+    init(homeViewModel: HomeViewModel) {
+        self.homeViewModel = homeViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    lazy var viewModel = InvoiceDetailsViewModel(viewModel: homeViewModel)
+   
+    let Xadet = String()
     
     
     let scrollView = UIScrollView()
     let contentView = UIView()
     
+    let tableView = InvoiceTableView()
+
     var companyName: String = ""
      var address: String = ""
     
@@ -38,19 +51,21 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
         viewModel.delegate = self
         //        viewModel.fetchJSONData()
         tcNumberTextField.delegate = self
-        
         UISetup()
+        tableView.numberofRows = viewModel.numberOfRows(isJob: self.isJobAdress)
+        tableView.invoiceObjects = viewModel.cellForRow(isJob: self.isJobAdress)
+        
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.4)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height + (tableView.tableView.contentSize.height + 50) )
     }
     
     
     func UISetup(){
         
-        lazy var headerView = HeaderView(title: "FATURA LİSTESİ", showBackButton: true )
+        lazy var headerView = HeaderView(title: "FATURA DETAYI", showBackButton: true )
         view.addSubview(headerView)
         headerView.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -58,7 +73,9 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
             make.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.15)
         }
-        
+        headerView.backAction = {
+            self.dismiss(animated: true)
+        }
         view.addSubview(personalInformationLabel)
         personalInformationLabel.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
@@ -80,7 +97,7 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
         scrollView.addSubview(contentView)
         
         contentView.snp.makeConstraints { make in
-            make.height.equalTo(scrollView)
+            make.height.equalTo(2000)
             make.width.equalTo(scrollView)
         }
         
@@ -130,20 +147,12 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
         }
         
         let customerListView = CustomerListView(
-            company : "Evim",
-            address:  "sadjşadsjşads",
-            installationNumber:  "",
-            contractAccountNumber: "",
-            amaount:  "")
-        /*
-            company : (homeViewModel.object?.list![0].company)!,
-            address: (homeViewModel.object?.list![0].address)!,
-            installationNumber: (homeViewModel.object?.list![0].installationNumber)!,
-            contractAccountNumber: (homeViewModel.object?.list![0].contractAccountNumber)!,
-            amaount: (homeViewModel.object?.list![0].amount)!)
-         */
-//        customerListView.viewButton.addTarget(self, action: #selector(clickPresent), for: .touchUpInside)
-        
+            company : (isJobAdress ? homeViewModel.object?.list![1].company : homeViewModel.object?.list![0].company)! ,
+            address:   (isJobAdress ? homeViewModel.object?.list![1].address : homeViewModel.object?.list![0].address)!,
+            installationNumber:  (isJobAdress ? homeViewModel.object?.list![1].installationNumber : homeViewModel.object?.list![0].installationNumber)!,
+            contractAccountNumber: (isJobAdress ? homeViewModel.object?.list![1].contractAccountNumber : homeViewModel.object?.list![0].contractAccountNumber)!,
+            amaount:  (isJobAdress ? homeViewModel.object?.list![1].amount : homeViewModel.object?.list![0].amount)!)
+       
         customerListView.viewButton.isHidden = true
         customerListView.amaountLabel.isHidden = true
         customerListView.amountDetailsLabel.isHidden = true
@@ -151,21 +160,19 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
         customerListView.snp.makeConstraints { make in
             make.top.equalTo(installationDetailsLabel.snp.bottom).offset(32)
             make.left.right.equalToSuperview().inset(30)
-            make.height.lessThanOrEqualTo(380)
+            make.height.lessThanOrEqualTo(400)
         }
+        guard let price = viewModel.price(isJob: self.isJobAdress) else {return}
         
-        var generalInfoView = GeneralInfoView(price: "", Xadet: "2")
-        generalInfoView.textLabel.text = "Seçili sözleşme hesabınıza ait 2 adet ödenmemiş fatura bulunmaktadır."
-        customerListView.addSubview(generalInfoView)
-        generalInfoView.snp.makeConstraints { make in
+        let unpaidInvoiceInfoView = UnpaidInvoiceInfoView(price: isJobAdress ? "\(homeViewModel.object!.list![1].amount!)" : "\(homeViewModel.object!.list![0].amount!)", Xadet : isJobAdress ? "\(homeViewModel.object!.list![1].amount?.count ?? 0)" : "\(homeViewModel.object!.list![0].amount!.count)")
+        customerListView.addSubview(unpaidInvoiceInfoView)
+        unpaidInvoiceInfoView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-12)
             make.left.equalToSuperview().offset(12)
             make.right.equalToSuperview().offset(-12)
             make.height.equalTo(120)
         }
-        
-        let tableView = InvoiceTableView()
-
+       
                   contentView.addSubview(tableView)
                   tableView.snp.makeConstraints { make in
                       make.top.equalTo(customerListView.snp.bottom).offset(20)
@@ -180,7 +187,6 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
     
     func updateTextFieldBorderColor(isValid: Bool) {
         if isValid {
-            // Eğer geçerli ise, kenar rengini sıfırla (varsayılan renk)
             tcNumberTextField.layer.borderColor = UIColor.clear.cgColor
         } else {
             // Geçerli değilse, kenar rengini kırmızı yap
@@ -190,32 +196,26 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
         }
     }
     
-    // Bu fonksiyonu tcNumberTextField'ta her veri girişi yapıldığında çağırın
     func textFieldDidChange(_ textField: UITextField) {
         if let text = textField.text, let ID = Int(text) {
             let isValidID = viewModel.validateCitizenshipID(ID: ID)
             updateTextFieldBorderColor(isValid: isValidID)
         } else {
-            // Geçersiz veri girildiyse kenar rengini sıfırla
             tcNumberTextField.layer.borderColor = UIColor.clear.cgColor
         }
     }
     
-    // UITextFieldDelegate metodu, metin değişikliği sırasında çağrılır
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Yeni metni hesaplayın
         if let text = textField.text, let range = Range(range, in: text) {
             let newText = text.replacingCharacters(in: range, with: string)
             
-            // Metni 11 karakter ile sınırlayın
             if newText.count <= 11 {
-                // Geçerli karakter sınırını aştığında, metin değişikliğine izin ver
                 if let ID = Int(newText) {
                     let isValidID = viewModel.validateCitizenshipID(ID: ID)
                     updateTextFieldBorderColor(isValid: isValidID)
                     updateWarningLabel(isValid: isValidID)
                 } else {
-                    // Geçersiz veri girildiyse kenar rengini sıfırla
                     updateTextFieldBorderColor(isValid: false)
                 }
                 return true
@@ -228,11 +228,10 @@ class InvoiceDetailsVC : UIViewController, InvoiceDetailsViewModelDelegate, UITe
     
     func updateWarningLabel(isValid: Bool) {
         if isValid {
-            // Geçerli kimlik numarası, uyarı label'ını gizle
             warningLabel.isHidden = true
-            warningLabel.snp.removeConstraints() // Kullanılmayan kısıtlamaları kaldırın
+            warningLabel.snp.removeConstraints()
         } else {
-            // Geçersiz kimlik numarası, uyarı label'ını göster ve SnapKit ile konumlandırın
+         
             warningLabel.isHidden = false
             warningLabel.text = "Geçersiz T.C. Kimlik Numarası"
             

@@ -9,6 +9,7 @@ import SnapKit
 import UIKit
 
 final class HeaderView: UIImageView {
+    var backAction : (() -> ())?
     let title: String?
     let titleLabel = UILabel()
     let backButton = UIButton()
@@ -26,11 +27,7 @@ final class HeaderView: UIImageView {
     }
     
     @objc func backButtonTapped() {
-        guard let viewController = self.parentViewController else {
-            // Parent view controller is not available, cannot dismiss
-            return
-        }
-        viewController.dismiss(animated: true, completion: nil)
+        backAction?()
     }
 
      override func layoutSubviews() {

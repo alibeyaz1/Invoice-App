@@ -1,15 +1,15 @@
 //
-//  GeneralInfoView.swift
+//  UnpaidInvoiceInfoView.swift
 //  EnerjiSACaseStudy
 //
-//  Created by Ali Beyaz on 2.08.2023.
+//  Created by Ali Beyaz on 5.08.2023.
 //
 
 import UIKit
 import SnapKit
 
-// MARK: - GeneralInfoView
-final class GeneralInfoView: UIView {
+// MARK: - UnpaidInvoiceInfoView
+final class UnpaidInvoiceInfoView: UIView {
     // Labels and image view for the view
     let textLabel = UILabel()
     let priceLabel = UILabel()
@@ -52,13 +52,13 @@ final class GeneralInfoView: UIView {
         stackView.distribution = .fillProportionally
         
         // Configure the appearance of the subtitleLabel
-        subtitleLabel.font = UIFont(name: "Hind-Semibold", size: 17)
+        subtitleLabel.font = UIFont(name: "Hind-Semibold", size: 16)
         subtitleLabel.textColor = .mainColor
         subtitleLabel.text = "Toplam Borç:"
         
         // Configure the appearance of the priceLabel
         priceLabel.text = "₺ \(price)"
-        priceLabel.font = UIFont(name: "Hind-Regular", size: 17)
+        priceLabel.font = UIFont(name: "Hind-Regular", size: 16)
         priceLabel.textColor = .mainColor
         priceLabel.textAlignment = .right
         
@@ -72,9 +72,9 @@ final class GeneralInfoView: UIView {
         }
         
         // Configure the textLabel
-        textLabel.text = "Tüm sözleşme hesaplarınıza ait \(Xadet) adet \nödenmemiş fatura bulunmaktadır."
+        textLabel.text = " Seçili sözleşme hesabınıza ait \(Xadet) \nadet ödenmemiş fatura bulunmaktadır."
         textLabel.numberOfLines = 2
-        textLabel.font = UIFont(name: "Hind-Semibold", size: 15)
+        textLabel.font = UIFont(name: "Hind-Semibold", size: 14)
         textLabel.textColor = .mainColor
         textLabel.sizeToFit()
         
